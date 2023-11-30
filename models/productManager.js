@@ -22,7 +22,7 @@ export class ProductManager {
         }
 
         const products = await this.getProducts();
-        let codeExists = products.some(product => product.code == code);
+        let codeExists = products.some(product => product.code === code);
 
         if (codeExists) {
           throw new Error("El código ya existe por favor verifique");
@@ -75,16 +75,22 @@ export class ProductManager {
 
   async updateProduct(id, updatedProduct){
     try{
-      let product = await this.getProductById(id);
-      const productId = product.id;
+      let products = await this.getProducts();
+      let product = products.find(product => product.id === id);
+      products = products.filter(product => product.id !== id);
+
+      if(!product)
+        throw new Error("No se puede actualizar, el produto no existe.");
 
       product = {
+        ...product,
         ...updatedProduct,
-        id: productId,
-        ...product
+        id,    
       }
-      console.log(product)
+      
+      products.push(product);
 
+      await this.#saveProducts(products);
     } catch (error) {
         console.log(error);
     }
