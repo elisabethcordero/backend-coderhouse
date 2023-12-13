@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export class ProductManager {
+export default class ProductManager {
   #filePath;
   #lastId;
 
@@ -8,7 +8,7 @@ export class ProductManager {
       this.#filePath = filePath;
       this.#setLastId();
   }
-  async addProduct(title, description, price, thumbnail, code, stock) {
+  async addProduct(title, description, price, thumbnail, code, stock, category, status) {
     try {
         if (
           title == undefined ||
@@ -16,7 +16,9 @@ export class ProductManager {
           price == undefined ||
           thumbnail == undefined ||
           code == undefined ||
-          stock == undefined
+          stock == undefined ||
+          status == undefined ||
+          category == undefined
         ) {
           throw new Error("Todos los campos son obligatorios");
         }
@@ -36,6 +38,8 @@ export class ProductManager {
           thumbnail,
           code,
           stock,
+          status,
+          category
         };
 
         products.push(newProduct);
