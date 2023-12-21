@@ -1,0 +1,18 @@
+.productList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+}
+
+.productCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1rem;
+    padding: 0 1rem;
+    border: 1px solid white;
+    border-radius: 4px;
+    max-height: 400px;
+    box-shadow: 0 0 10px cyan;
+
+}
