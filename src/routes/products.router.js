@@ -8,6 +8,10 @@ let socketServer = null;
 export const setSocketServer = (server) =>
   socketServer = server;
 
+const sendMessageReload = async () => {
+  const products = await productManager.getProducts();
+  socketServer.emit("reloadProducts", products);
+}
 
 router.get('/', async (req, res) => {
   let queries = req.query;
@@ -24,13 +28,14 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
 
   let id = parseInt(req.params.id);
-  
+
   if (isNaN(id) || id < 0){
       res.send("Debes especificar un id válido.")
       return;
   }
 
   let products = await productManager.getProducts();
+
   let product = products.find(prod => prod.id === id);
 
   if (product){
@@ -47,12 +52,12 @@ router.post("/", async (req, res) => {
   try {
     
     await productManager.addProduct(title, description, price, thumbnail, code, stock, category, true);
-    socketServer.emit("new_product");
+    await sendMessageReload();
 
   } catch (error) {
     response.message = "Error: " + error.message;
   }
-  
+
   res.json(response);
 });
 

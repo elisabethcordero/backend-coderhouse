@@ -37,7 +37,7 @@ export default class CartManager {
 
         if (!cart)
           throw new Error("El carrito no existe.")
-        console.log(cart)
+        
         let existProduct = cart.products.find(item => item.id === product.id)
 
         if (existProduct){

@@ -28,7 +28,3 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 app.use('/', viewsRouter);
-
-socketServer.on("connection", (socket) => {
-    
-});

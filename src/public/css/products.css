@@ -9,10 +9,12 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 1rem;
-    padding: 0 1rem;
     border: 1px solid white;
     border-radius: 4px;
     max-height: 400px;
     box-shadow: 0 0 10px cyan;
+}
 
+.cardProduct_info {
+    padding: 0 1rem;
 }

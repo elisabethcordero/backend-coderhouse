@@ -1,11 +1,11 @@
-<div class="productList">
+<div class="productList" id="productContainer">
     {{#each products}}
     <div class="productCard">
         <div class="cardProduct_image">
-            <img src="{{this.thumbnail}}" alt="{{this.name}}">
+            <img src="{{this.thumbnail}}" alt="{{this.title}}">
         </div>
         <div class="cardProduct_info">
-            <h3>{{this.name}}</h3>
+            <h3>{{this.title}}</h3>
             <p>{{this.description}}</p>
             <p>{{this.price}}</p>
             <p>{{this.stock}}</p>
